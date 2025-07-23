@@ -1,8 +1,8 @@
-# AI Teleprompter App
+# An AI Teleprompter App
 
 ## Overview
 
-The AI Teleprompter App is a comprehensive solution designed to assist developers and professionals during coding interviews and presentations. It features a desktop application with teleprompter functionality and a set of microservices that handle various backend tasks.
+This is an AI Teleprompter App designed to assist professionals to build confidence during presentations. It features a desktop application with teleprompter functionality and a set of microservices that handle various backend tasks.
 
 ## Project Structure
 
