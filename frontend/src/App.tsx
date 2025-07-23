@@ -31,110 +31,110 @@ function SimpleNavigation() {
             width: "100%",
           }}
         >
-        <Link
-          to="/"
-          style={{
-            color: "#fff",
-            textDecoration: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-          }}
-        >
-          <img
-            src={lexaaiLogo}
-            alt="LexaAI"
-            style={{ height: "32px", width: "auto" }}
-          />
-          <span
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: "bold",
-            }}
-          >
-            LexaAI
-          </span>
-        </Link>
-
-        <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
-          <a
-            href="/#pricing-plans"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("pricing-plans")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            style={{
-              color: "#ecf0f1",
-              textDecoration: "none",
-              fontSize: "16px",
-              transition: "color 0.3s",
-              cursor: "pointer",
-            }}
-          >
-            Pricing
-          </a>
-
           <Link
-            to="/dashboard"
+            to="/"
             style={{
-              color: "#ecf0f1",
+              color: "#fff",
               textDecoration: "none",
-              fontSize: "16px",
-              transition: "color 0.3s",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            Dashboard
+            <img
+              src={lexaaiLogo}
+              alt="LexaAI"
+              style={{ height: "32px", width: "auto" }}
+            />
+            <span
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+              }}
+            >
+              LexaAI
+            </span>
           </Link>
 
-          <Link
-            to="/subscription"
-            style={{
-              color: "#ecf0f1",
-              textDecoration: "none",
-              fontSize: "16px",
-              transition: "color 0.3s",
-            }}
-          >
-            Subscription
-          </Link>
+          <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
+            <a
+              href="/#pricing-plans"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("pricing-plans")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{
+                color: "#ecf0f1",
+                textDecoration: "none",
+                fontSize: "16px",
+                transition: "color 0.3s",
+                cursor: "pointer",
+              }}
+            >
+              Pricing
+            </a>
 
-          <div style={{ display: "flex", gap: "10px" }}>
-            <Link to="/login">
-              <button
-                style={{
-                  backgroundColor: "transparent",
-                  color: "#ecf0f1",
-                  border: "1px solid #ecf0f1",
-                  padding: "8px 16px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                }}
-              >
-                Sign In
-              </button>
+            <Link
+              to="/dashboard"
+              style={{
+                color: "#ecf0f1",
+                textDecoration: "none",
+                fontSize: "16px",
+                transition: "color 0.3s",
+              }}
+            >
+              Dashboard
             </Link>
 
-            <Link to="/register">
-              <button
-                style={{
-                  backgroundColor: "#3498db",
-                  color: "white",
-                  border: "none",
-                  padding: "8px 16px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                }}
-              >
-                Start Free Trial
-              </button>
+            <Link
+              to="/subscription"
+              style={{
+                color: "#ecf0f1",
+                textDecoration: "none",
+                fontSize: "16px",
+                transition: "color 0.3s",
+              }}
+            >
+              Subscription
             </Link>
+
+            <div style={{ display: "flex", gap: "10px" }}>
+              <Link to="/login">
+                <button
+                  style={{
+                    backgroundColor: "transparent",
+                    color: "#ecf0f1",
+                    border: "1px solid #ecf0f1",
+                    padding: "8px 16px",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    fontSize: "14px",
+                  }}
+                >
+                  Sign In
+                </button>
+              </Link>
+
+              <Link to="/register">
+                <button
+                  style={{
+                    backgroundColor: "#3498db",
+                    color: "white",
+                    border: "none",
+                    padding: "8px 16px",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    fontSize: "14px",
+                  }}
+                >
+                  Start Free Trial
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </nav>
   );
@@ -144,13 +144,13 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div 
-          style={{ 
+        <div
+          style={{
             width: "100%",
-            minHeight: "100vh", 
+            minHeight: "100vh",
             display: "flex",
             flexDirection: "column",
-            backgroundColor: "#f8f9fa" 
+            backgroundColor: "#f8f9fa",
           }}
         >
           <SimpleNavigation />

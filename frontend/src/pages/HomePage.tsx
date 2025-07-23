@@ -218,11 +218,11 @@ function HomePage() {
       </section>
 
       {/* How It Works Section */}
-      <section 
-        className="section-padding" 
-        style={{ 
+      <section
+        className="section-padding"
+        style={{
           backgroundColor: "white",
-          width: "100%"
+          width: "100%",
         }}
       >
         <div className="container">
@@ -237,7 +237,10 @@ function HomePage() {
             How LexaAI Builds Your Confidence
           </h2>
 
-          <div className="responsive-grid grid-3" style={{ textAlign: "center" }}>
+          <div
+            className="responsive-grid grid-3"
+            style={{ textAlign: "center" }}
+          >
             <div>
               <div
                 style={{
