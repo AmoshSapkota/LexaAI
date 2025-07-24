@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { createSubscription } from "../store/slices/paymentSlice";
 
@@ -125,6 +125,13 @@ function PricingPage() {
     },
   ];
 
+  useEffect(() => {
+    const el = document.getElementById("pricing-plans");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <div
       style={{
@@ -224,6 +231,7 @@ function PricingPage() {
 
         {/* Pricing Plans */}
         <div
+          id="pricing-plans"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",

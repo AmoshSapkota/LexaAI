@@ -1,7 +1,7 @@
 package com.aiapp.auth_service.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constants.Email;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -12,20 +12,20 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.lang.annotation.Inherited;
 import java.time.LocalDateTime;
-import java.uitil.HashSet;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @Builder
-@NoArgsConstructor // jpa constructor requirement
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "users", uniqueConstraints = { // db level unique constraints
+@Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email"),
         @UniqueConstraint(columnNames = "username")
 })
-@EntityListeners(AuditingEntityListener.class) // automatic timestamp updates
+@EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment ID
@@ -47,10 +47,10 @@ public class User {
     @Column(name = "first_name") // maps to database column "first_name"
     private String firstName;
 
-    @Column(name = "last_name") // maps to database column "last_name"
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "phone_numbe")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     // These booleans implement Spring Security's UserDetails interface

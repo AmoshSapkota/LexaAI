@@ -80,6 +80,13 @@ Users/amoshsapkota/Desktop/AI-APP/microservices/auth-service/pom.xml -->
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         
+        <!-- SpringDoc OpenAPI for Swagger UI -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        
         <!-- Flyway for database migrations -->
         <dependency>
             <groupId>org.flywaydb</groupId>

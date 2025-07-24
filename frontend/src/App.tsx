@@ -57,14 +57,8 @@ function SimpleNavigation() {
           </Link>
 
           <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
-            <a
-              href="/#pricing-plans"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById("pricing-plans")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
+            <Link
+              to="/pricing"
               style={{
                 color: "#ecf0f1",
                 textDecoration: "none",
@@ -74,7 +68,7 @@ function SimpleNavigation() {
               }}
             >
               Pricing
-            </a>
+            </Link>
 
             <Link
               to="/dashboard"

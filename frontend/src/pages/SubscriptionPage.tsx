@@ -57,7 +57,7 @@ function SubscriptionPage() {
             Pro Plan
           </h3>
           <p style={{ color: "#7f8c8d", fontSize: "1.1rem" }}>
-            $29/month • Unlimited AI solutions
+            $15/month • Unlimited AI solutions
           </p>
         </div>
 
@@ -72,7 +72,7 @@ function SubscriptionPage() {
           <div>
             <strong>Next Billing Date:</strong>
             <p style={{ margin: "5px 0", color: "#7f8c8d" }}>
-              February 15, 2024
+              February 15, 2025
             </p>
           </div>
           <div>
@@ -130,13 +130,13 @@ function SubscriptionPage() {
             }}
           >
             <div>
-              <strong>January 15, 2024</strong>
+              <strong>January 15, 2025</strong>
               <p style={{ margin: "5px 0 0 0", color: "#7f8c8d" }}>
                 Pro Plan - Monthly
               </p>
             </div>
             <div style={{ textAlign: "right" }}>
-              <strong>$29.00</strong>
+              <strong>$15.00</strong>
               <p
                 style={{
                   margin: "5px 0 0 0",
@@ -173,13 +173,13 @@ function SubscriptionPage() {
             }}
           >
             <div>
-              <strong>December 15, 2023</strong>
+              <strong>December 15, 2024</strong>
               <p style={{ margin: "5px 0 0 0", color: "#7f8c8d" }}>
                 Pro Plan - Monthly
               </p>
             </div>
             <div style={{ textAlign: "right" }}>
-              <strong>$29.00</strong>
+              <strong>$15.00</strong>
               <p
                 style={{
                   margin: "5px 0 0 0",
@@ -216,7 +216,7 @@ function SubscriptionPage() {
             }}
           >
             <div>
-              <strong>November 15, 2023</strong>
+              <strong>November 15, 2024</strong>
               <p style={{ margin: "5px 0 0 0", color: "#7f8c8d" }}>
                 Free Trial Started
               </p>
@@ -318,7 +318,7 @@ function SubscriptionPage() {
         <p style={{ color: "#856404", margin: "0", fontSize: "14px" }}>
           You can cancel your subscription at any time. Your access will
           continue until the end of your current billing period (February 15,
-          2024). After cancellation, you'll lose access to the desktop app and
+          2025). After cancellation, you'll lose access to the desktop app and
           all premium features.
         </p>
       </div>
