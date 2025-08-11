@@ -2,3 +2,7 @@
 desktop-app
 # design file
 design.txt
+#scripts
+scripts/
+#docker compose
+docker-compose.yml

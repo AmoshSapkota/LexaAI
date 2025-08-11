@@ -1,0 +1,89 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+      
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - name: Retry
+          args:
+            retries: 3
+            methods: GET,POST
+        - name: CircuitBreaker
+          args:
+            name: default
+            fallbackUri: forward:/fallback
+  
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+# Service URLs
+app:
+  services:
+    auth-service:
+      url: ${AUTH_SERVICE_URL:http://localhost:8081}
+    payment-service:
+      url: ${PAYMENT_SERVICE_URL:http://localhost:8082}
+    ai-content-service:
+      url: ${AI_CONTENT_SERVICE_URL:http://localhost:8083}
+    notification-service:
+      url: ${NOTIFICATION_SERVICE_URL:http://localhost:8084}
+    analytics-service:
+      url: ${ANALYTICS_SERVICE_URL:http://localhost:8085}
+  
+  jwt:
+    secret: ${JWT_SECRET:mySecretKey}
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus,info
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# OpenTelemetry
+otel:
+  service:
+    name: api-gateway
+  exporter:
+    jaeger:
+      endpoint: ${OTEL_EXPORTER_JAEGER_ENDPOINT:http://localhost:14268/api/traces}
+  traces:
+    exporter: jaeger
+
+# Logging
+logging:
+  level:
+    com.aiapp: ${LOG_LEVEL:INFO}
+    org.springframework.cloud.gateway: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

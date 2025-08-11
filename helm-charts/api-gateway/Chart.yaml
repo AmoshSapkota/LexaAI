@@ -1,0 +1,25 @@
+apiVersion: v2
+name: api-gateway
+description: API Gateway Helm chart for AI-APP
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+keywords:
+  - microservices
+  - gateway
+  - spring-boot
+
+home: https://github.com/your-org/ai-app
+sources:
+  - https://github.com/your-org/ai-app
+
+maintainers:
+  - name: AI-APP Team
+    email: team@aiapp.com
+
+dependencies:
+  - name: redis
+    version: "17.x.x"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: redis.enabled

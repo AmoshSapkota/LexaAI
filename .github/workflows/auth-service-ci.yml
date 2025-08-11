@@ -1,0 +1,68 @@
+name: Auth Service CI
+
+on:
+  push:
+    branches: [ main, dev ]
+    paths: [ 'microservices/auth-service/**' ]
+  pull_request:
+    branches: [ main ]
+    paths: [ 'microservices/auth-service/**' ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: auth_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+        
+    - name: Run Tests
+      working-directory: microservices/auth-service
+      run: mvn clean test
+      
+    - name: SAST Scan with SonarQube
+      working-directory: microservices/auth-service
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: mvn clean verify sonar:sonar
+      
+    - name: Validate Swagger
+      working-directory: microservices/auth-service
+      run: mvn swagger-codegen:generate -Dswagger.codegen.skip=false
+      
+    - name: Test Kafka Integration
+      working-directory: microservices/auth-service
+      run: mvn test -Dtest=KafkaConsumerServiceTest

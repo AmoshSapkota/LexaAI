@@ -1,0 +1,132 @@
+groups:
+  - name: application-alerts
+    rules:
+      # High Error Rate
+      - alert: HighErrorRate
+        expr: |
+          (
+            rate(http_server_requests_seconds_count{status=~"5.."}[5m]) /
+            rate(http_server_requests_seconds_count[5m])
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          team: backend
+        annotations:
+          summary: "High error rate detected for {{ $labels.job }}"
+          description: "Error rate is {{ $value | humanizePercentage }} for service {{ $labels.job }} in namespace {{ $labels.kubernetes_namespace }}"
+          runbook_url: "https://runbooks.aiapp.com/high-error-rate"
+
+      # High Response Time
+      - alert: HighResponseTime
+        expr: |
+          histogram_quantile(0.95, 
+            rate(http_server_requests_seconds_bucket[5m])
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+          team: backend
+        annotations:
+          summary: "High response time for {{ $labels.job }}"
+          description: "95th percentile response time is {{ $value }}s for service {{ $labels.job }}"
+
+      # Service Down
+      - alert: ServiceDown
+        expr: up{job=~".*-service|api-gateway"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          team: backend
+        annotations:
+          summary: "Service {{ $labels.job }} is down"
+          description: "Service {{ $labels.job }} has been down for more than 2 minutes"
+          runbook_url: "https://runbooks.aiapp.com/service-down"
+
+      # High Memory Usage
+      - alert: HighMemoryUsage
+        expr: |
+          (
+            jvm_memory_used_bytes{area="heap"} /
+            jvm_memory_max_bytes{area="heap"}
+          ) > 0.85
+        for: 5m
+        labels:
+          severity: warning
+          team: backend
+        annotations:
+          summary: "High JVM memory usage for {{ $labels.job }}"
+          description: "JVM heap memory usage is {{ $value | humanizePercentage }} for service {{ $labels.job }}"
+
+      # Database Connection Pool Exhaustion
+      - alert: DatabaseConnectionPoolExhaustion
+        expr: |
+          hikaricp_connections_active / hikaricp_connections_max > 0.9
+        for: 3m
+        labels:
+          severity: critical
+          team: backend
+        annotations:
+          summary: "Database connection pool almost exhausted for {{ $labels.job }}"
+          description: "Connection pool usage is {{ $value | humanizePercentage }} for service {{ $labels.job }}"
+
+      # JWT Token Validation Failures
+      - alert: HighJWTValidationFailures
+        expr: |
+          rate(jwt_validation_failures_total[5m]) > 10
+        for: 3m
+        labels:
+          severity: warning
+          team: security
+        annotations:
+          summary: "High JWT validation failure rate"
+          description: "JWT validation failures are occurring at {{ $value }} failures per second"
+
+      # Kafka Consumer Lag
+      - alert: KafkaConsumerLag
+        expr: |
+          kafka_consumer_lag_max > 1000
+        for: 5m
+        labels:
+          severity: warning
+          team: backend
+        annotations:
+          summary: "High Kafka consumer lag for {{ $labels.job }}"
+          description: "Consumer lag is {{ $value }} messages for topic {{ $labels.topic }}"
+
+      # AI Content Generation Failures
+      - alert: AIContentGenerationFailures
+        expr: |
+          rate(ai_content_generation_failures_total[5m]) > 0.1
+        for: 3m
+        labels:
+          severity: warning
+          team: ai
+        annotations:
+          summary: "AI content generation failures detected"
+          description: "AI content generation is failing at {{ $value }} failures per second"
+
+      # Payment Processing Failures
+      - alert: PaymentProcessingFailures
+        expr: |
+          rate(payment_processing_failures_total[5m]) > 0.05
+        for: 2m
+        labels:
+          severity: critical
+          team: payments
+        annotations:
+          summary: "Payment processing failures detected"
+          description: "Payment processing failures occurring at {{ $value }} per second"
+          runbook_url: "https://runbooks.aiapp.com/payment-failures"
+
+      # Notification Delivery Failures
+      - alert: NotificationDeliveryFailures
+        expr: |
+          rate(notification_delivery_failures_total[5m]) > 1
+        for: 5m
+        labels:
+          severity: warning
+          team: notifications
+        annotations:
+          summary: "High notification delivery failure rate"
+          description: "Notification delivery failures at {{ $value }} per second"
