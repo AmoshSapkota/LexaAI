@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is an AI Teleprompter App designed to assist professionals to build confidence during presentations. It features a desktop application with teleprompter functionality and a set of microservices that handle various backend tasks.
+This is an AI Teleprompter App designed to assist professionals to build confidence during presentations. It features a web application with teleprompter functionality and a set of microservices that handle various backend tasks.
 
 ## Project Structure
 
