@@ -17,12 +17,11 @@ The project is organized into the following main components:
   - **Notification Service**: Sends notifications and manages email communications.
   - **Analytics Service**: Collects and analyzes user activity data.
 
-- **Desktop App**: An Electron-based application that provides a user-friendly interface for the teleprompter functionality.
 
 ## Technologies Used
 
 - **Backend**: Java, Spring Boot, Maven
-- **Frontend**: React, Electron
+- **Frontend**: React
 - **Containerization**: Docker
 - **Infrastructure**: Kubernetes, Terraform
 - **CI/CD**: GitHub Actions, Argo CD
